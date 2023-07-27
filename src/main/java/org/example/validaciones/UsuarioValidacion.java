@@ -1,5 +1,6 @@
 package org.example.validaciones;
 
+import org.example.utilidades.Mensaje;
 import org.example.utilidades.Util;
 
 public class UsuarioValidacion {
@@ -12,9 +13,9 @@ public class UsuarioValidacion {
     public boolean validarNombres(String nombres) throws Exception{
         //1. validar que el nombre tenga como minimo 10 caracteres
         if(nombres.length()<10){
-            throw new Exception("revisar numero de caracteres");
+            throw new Exception(Mensaje.NUMERO_CARACTERES_INVALIDO.getMensaje());
         }else if(!util.validarExpresionRegular(nombres,"^[A-Za-z ]+$")){ //2. nombres solo puede tener letras
-            throw new Exception("Solo se aceptan letras en el nombre");
+            throw new Exception(Mensaje.NOMBRE_INVALIDO.getMensaje());
         }else{
             return true;
         }
@@ -22,7 +23,7 @@ public class UsuarioValidacion {
 
     public boolean validarCorreo(String correo)throws Exception{
         if(!util.validarExpresionRegular(correo,"^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")){
-            throw new Exception("El formato del correo no es valido");
+            throw new Exception(Mensaje.CORREO_INVALIDO.getMensaje());
         }else{
             return true;
         }
@@ -30,7 +31,7 @@ public class UsuarioValidacion {
 
     public boolean validarUbicacion(Integer ubicacion)throws Exception{
         if(ubicacion <1 || ubicacion>4){
-            throw new Exception("Esta ubicacion no es valida");
+            throw new Exception(Mensaje.UBICACION_INVALIDA.getMensaje());
         }else{
             return true;
         }
